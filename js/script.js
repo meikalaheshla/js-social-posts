@@ -39,6 +39,10 @@ const postContainer = document.getElementById('container');
 for (let i = 0; i < posts.length; i++) {
     const post = posts[i];
 
+
+
+
+
     postCard += `
         <div class="post">
             <div class="post__header">
@@ -96,6 +100,8 @@ for (let i = 0; i < likeButtons.length; i++) {
             currentButton.classList.remove('like-button--liked')
 
         } else {
+
+            //BONUS 3
 
             currentCounter.innerText = `${++posts[i].likesNumber}`
             currentButton.classList.toggle('like-button--liked')
