@@ -1,4 +1,4 @@
-// MILESTONE 1 CREO L' ARRAY DI OGGETTI  
+// MILESTONE 1 CREO L' ARRAY DI OGGETTI
 
 const posts = [
     {
@@ -31,6 +31,8 @@ const posts = [
 ]
 
 
+// MILESTONE 2 CREO I POSTO E LI INSERISCO NEL DOM
+
 let postCard = '';
 const postContainer = document.getElementById('container');
 
@@ -59,7 +61,7 @@ for (let i = 0; i < posts.length; i++) {
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button js-like-button" href="#" data-postid="1">
+                        <a class="like-button js-like-button"  data-postid="${i}>
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
@@ -68,15 +70,42 @@ for (let i = 0; i < posts.length; i++) {
                  </div>
             </div>
         </div>
-        
-            
+
+
             `
 
+
 }
-postContainer.innerHTML = postCard
 
-const likeButton = document.querySelector('js-like-button');
+postContainer.innerHTML = postCard;
 
-likeButton.addEventListener(click, function () {
-    likeButton.classList.add('like-button--liked')
-})
+// MILESTONE 3 INTERAZIONE CON BOTTONI E COUNTER
+
+
+const likeCounters = document.querySelectorAll('.js-likes-counter')
+const likeButtons = document.querySelectorAll('.like-button');
+console.log(likeButtons)
+
+for (let i = 0; i < likeButtons.length; i++) {
+    const currentButton = likeButtons[i];
+    const currentCounter = likeCounters[i]
+
+    currentButton.addEventListener('click', function () {
+        if (currentButton.classList.contains('like-button--liked')) {
+            currentCounter.innerText = `${--posts[i].likesNumber}`
+            currentButton.classList.remove('like-button--liked')
+
+        } else {
+
+            currentCounter.innerText = `${++posts[i].likesNumber}`
+            currentButton.classList.toggle('like-button--liked')
+        }
+
+
+        console.table(posts[i])
+
+
+
+
+    })
+}
